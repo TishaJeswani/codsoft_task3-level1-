@@ -1,0 +1,125 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calci</title>
+    <style>
+        .btn{
+            width:30px;
+            margin-top:10px;
+            margin-left:10px;
+            border-radius: 50%;
+            border: 1px solid #717377;
+                 }
+        input{
+            margin-left: 10px;
+            margin-top: 8px;
+            text-align: right;
+            
+        }
+        .container{
+            width:190px;
+            margin-top: 230px;
+            background-color: black;
+            border-radius: 12px;
+            border: 1px solid #717377;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn:hover{
+            color: black;
+            background-color:aliceblue;
+            border: 2.5px solid #717377;
+            margin-bottom: 3px;
+        }
+        .Calci{
+            margin-bottom:7px ;
+        }
+        .button{
+            width:60px;
+            margin-top:10px;
+            margin-left:20px;
+            border-radius: 10px;
+            background-color:orangered;
+            border: 1px white;
+          }
+          .btn1{
+            width:30px;
+            margin-top:10px;
+            margin-left:10px;
+            border-radius: 50%;
+            border: 1px solid #717377;
+            background-color: green;
+          }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="display" placeholder="0">
+        <div>
+            <button class="btn1" onclick="clearDisplay()">AC</button>
+            <button class="btn1" onclick="deleteLastChar()">DE</button>
+            <button class="btn" onclick="appendChar('.')">.</button>
+            <button class="btn" onclick="appendChar('/')">/</button>
+        </div>
+        <div>
+            <button class="btn" onclick="appendChar('7')">7</button>
+            <button class="btn" onclick="appendChar('8')">8</button>
+            <button class="btn" onclick="appendChar('9')">9</button>
+            <button class="btn" onclick="appendChar('*')">*</button>
+        </div>
+        <div>
+            <button class="btn" onclick="appendChar('4')">4</button>
+            <button class="btn" onclick="appendChar('5')">5</button>
+            <button class="btn" onclick="appendChar('6')">6</button>
+            <button class="btn" onclick="appendChar('-')">-</button>
+        </div>
+        <div>
+            <button class="btn" onclick="appendChar('1')">1</button>
+            <button class="btn" onclick="appendChar('2')">2</button>
+            <button class="btn" onclick="appendChar('3')">3</button>
+            <button class="btn" onclick="appendChar('+')">+</button>
+        </div>
+        <div class="Calci">
+            <button class="btn" onclick="appendChar('00')">00</button>
+            <button class="btn" onclick="appendChar('0')">0</button>
+            <button class="button" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+    <script>
+        var display = document.getElementById('display');
+        var currentInput = '';
+
+        function appendChar(char) {
+            currentInput += char;
+            display.value = currentInput;
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            display.value = '';
+        }
+
+        function deleteLastChar() {
+            currentInput = currentInput.slice(0, -1);
+            display.value = currentInput;
+        }
+
+        function calculateResult() {
+            try {
+                var result = eval(currentInput);
+                display.value = result;
+                currentInput = result.toString();
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
